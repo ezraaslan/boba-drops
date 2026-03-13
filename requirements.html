@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Requirements & Examples — Boba Drops</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=450">
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── Mockup wrapper ── */
+    .mockup-section {
+      max-width: 52rem;
+      margin: 0 auto 3em auto;
+    }
+
+    .mockup-label {
+      font-size: 1.1em;
+      font-weight: 700;
+      margin-bottom: 0.4em;
+      color: #F6D193;
+      opacity: 0.85;
+      letter-spacing: 0.03em;
+    }
+
+    /* Browser chrome */
+    .browser-chrome {
+      background: #3a1e00;
+      border-radius: 10px 10px 0 0;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-dot.red   { background: #ff5f57; }
+    .browser-dot.yellow{ background: #ffbd2e; }
+    .browser-dot.green { background: #28c840; }
+    .browser-url {
+      background: #4c2a0d;
+      border-radius: 4px;
+      padding: 2px 10px;
+      font-size: 0.55em;
+      color: #F6D193;
+      opacity: 0.7;
+      margin-left: 8px;
+      flex: 1;
+    }
+
+    /* The fake website viewport */
+    .mockup-viewport {
+      background: #fff;
+      border-radius: 0 0 10px 10px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    /* ── Annotation arrows ── */
+    .annotation {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .annotation-pill {
+      background: rgba(199, 107, 15, 0.95);
+      color: #fff9ee;
+      font-family: "Fraunces", monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      letter-spacing: 0.02em;
+    }
+
+    .annotation-line {
+      width: 2px;
+      background: rgba(199, 107, 15, 0.85);
+      border-radius: 2px;
+      position: absolute;
+    }
+
+    .annotation-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #C76B0F;
+      border: 2px solid #fff;
+      position: absolute;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+
+    /* ── Fake website content styles ── */
+    .fake-site {
+      font-family: Arial, sans-serif;
+      color: #222;
+      font-size: 13px;
+    }
+
+    /* Site 1 — bare minimum */
+    .site1-header {
+      background: #336699;
+      color: white;
+      padding: 14px 18px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .site1-body { padding: 14px 18px; line-height: 1.6; }
+    .site1-body p { margin: 0 0 10px; }
+    .site1-body img { width: 120px; height: 80px; object-fit: cover; border-radius: 4px; display: block; margin-bottom: 10px; }
+    .site1-body h2 { font-size: 15px; margin: 0 0 6px; }
+    .site1-list { padding-left: 18px; margin: 0; }
+    .site1-list li { margin-bottom: 4px; }
+
+    /* Site 2 — better */
+    .site2-header {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #e0e0ff;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site2-header span { font-size: 20px; font-weight: bold; letter-spacing: 1px; }
+    .site2-nav a { color: #a0a8ff; font-size: 11px; margin-left: 12px; text-decoration: none; }
+    .site2-hero { background: #f0f4ff; padding: 22px; text-align: center; }
+    .site2-hero h1 { margin: 0 0 6px; font-size: 20px; color: #1a1a2e; }
+    .site2-hero p { margin: 0 0 12px; color: #555; font-size: 12px; }
+    .site2-btn { background: #4a5af0; color: white; padding: 6px 16px; border-radius: 5px; text-decoration: none; font-size: 12px; display: inline-block; }
+    .site2-body { padding: 18px 22px; }
+    .site2-body h2 { font-size: 15px; color: #333; margin: 0 0 10px; border-bottom: 2px solid #e0e0ff; padding-bottom: 4px; }
+    .site2-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+    .site2-card { background: #f8f8ff; border-radius: 6px; padding: 10px; font-size: 11px; color: #444; border: 1px solid #e0e0ff; }
+    .site2-card strong { display: block; color: #1a1a2e; margin-bottom: 3px; }
+    .site2-img { width: 100%; height: 60px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 4px; margin-bottom: 6px; }
+    .site2-footer { background: #1a1a2e; color: #888; text-align: center; padding: 10px; font-size: 10px; }
+
+    /* Site 3 — polished */
+    .site3-header {
+      background: #0f0f0f;
+      color: #f5f5f5;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site3-logo { font-size: 16px; font-weight: 900; letter-spacing: 2px; color: #f0c040; }
+    .site3-nav a { color: #aaa; font-size: 10px; margin-left: 14px; text-decoration: none; }
+    .site3-nav a:hover { color: #f0c040; }
+    .site3-hero {
+      background: linear-gradient(160deg, #1a0533, #0a1628);
+      padding: 30px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .site3-hero-text { flex: 1; }
+    .site3-hero-text h1 { margin: 0 0 8px; font-size: 22px; color: #f5f5f5; line-height: 1.2; }
+    .site3-hero-text h1 span { color: #f0c040; }
+    .site3-hero-text p { margin: 0 0 14px; font-size: 11px; color: #aaa; line-height: 1.6; }
+    .site3-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .site3-tag { background: rgba(240,192,64,0.15); color: #f0c040; font-size: 9px; padding: 2px 8px; border-radius: 10px; border: 1px solid rgba(240,192,64,0.3); }
+    .site3-btn { background: #f0c040; color: #0f0f0f; font-weight: bold; padding: 7px 18px; border-radius: 5px; font-size: 11px; display: inline-block; text-decoration: none; }
+    .site3-avatar { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #f0c040, #e05e20); flex-shrink: 0; }
+    .site3-content { padding: 20px 24px; background: #fafafa; }
+    .site3-section-title { font-size: 14px; font-weight: 800; color: #0f0f0f; margin: 0 0 12px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .site3-projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .site3-project { border-radius: 8px; overflow: hidden; background: #fff; border: 1px solid #eee; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .site3-project-img { height: 50px; }
+    .site3-project-img.p1 { background: linear-gradient(135deg, #ff6b6b, #ffa36c); }
+    .site3-project-img.p2 { background: linear-gradient(135deg, #43b89c, #2196f3); }
+    .site3-project-img.p3 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+    .site3-project-info { padding: 8px; }
+    .site3-project-info strong { display: block; font-size: 10px; color: #222; }
+    .site3-project-info span { font-size: 9px; color: #888; }
+    .site3-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 14px; }
+    .site3-table th { background: #0f0f0f; color: #f0c040; padding: 6px 10px; text-align: left; font-size: 10px; letter-spacing: 0.05em; }
+    .site3-table td { padding: 6px 10px; border-bottom: 1px solid #eee; color: #444; }
+    .site3-table tr:last-child td { border-bottom: none; }
+    .site3-footer { background: #0f0f0f; color: #555; text-align: center; padding: 10px; font-size: 9px; }
+    .site3-footer span { color: #f0c040; }
+
+    /* requirements list */
+    .req-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .req-list li {
+      padding: 0.75em 0 0.75em 2em;
+      border-bottom: 1px solid rgba(246, 209, 147, 0.15);
+      position: relative;
+      line-height: 1.5;
+    }
+    .req-list li:last-child { border-bottom: none; }
+    .req-list li::before {
+      content: "🧋";
+      position: absolute;
+      left: 0;
+      top: 0.75em;
+    }
+    .req-list li strong { color: #ffe4a0; }
+  </style>
+</head>
+
+<body>
+  <a class="banner" href="https://hackclub.com/">
+    <img src="https://contribute.hackclub.com/images/flag-orpheus-top.png"
+      alt="Dinosaur arm holding flag that reads 'Hack Club'">
+  </a>
+  <a class="top-button" href="index.html">← Back</a>
+
+  <div id="header-gallery">
+    <h1>Requirements &amp; Examples</h1>
+    <p style="max-width: 32em; text-align: center; opacity: 0.85;">
+      Everything your club members need to know before submitting — plus three real examples showing exactly what we're looking for.
+    </p>
+  </div>
+
+  <!-- Requirements -->
+  <div class="container">
+    <div class="section">
+      <h2>The Requirements</h2>
+      <ul class="req-list">
+        <li>
+          <strong>Ages 13–18 only.</strong> Other folks can join club meetings, but only participants in this age range can ship a project to Boba Drops.
+        </li>
+        <li>
+          <strong>No AI.</strong> Websites must be hand-written. Workshops with too many AI submissions risk being closed — and in some cases, so does the club. Set expectations early.
+        </li>
+        <li>
+          <strong>Websites must be unique.</strong> Each participant builds their own site. We'll reject submissions that all use the same HTML &amp; CSS features. Encourage members to experiment with different tags!
+        </li>
+        <li>
+          <strong>HTML &amp; CSS only.</strong> No JavaScript or other languages — this program is for beginners mastering the basics. There are other Hack Club programs for JS!
+        </li>
+        <li>
+          <strong>At least 5 HTML &amp; CSS features</strong> — with at least one being CSS and at least one being an image.
+        </li>
+        <li>
+          <strong>Good effort &amp; accessible.</strong> No tiny fonts, excessive color clashes, or illegible text. It doesn't have to be beautiful — it just has to be readable and genuine.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Examples -->
+  <div class="container">
+    <div class="section">
+      <h2>Examples</h2>
+      <p style="opacity: 0.85; margin-bottom: 2em;">
+        These three mockups show the spectrum of what Boba Drops submissions look like — from the bare minimum that just passes, to something genuinely impressive.
+      </p>
+
+      <!-- ── EXAMPLE 1: Bare minimum ── -->
+      <div class="mockup-section">
+        <div class="mockup-label">① Bare minimum — just passes</div>
+        <img src="example1.png" alt="Bare minimum example website" style="width: 100%; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.35); display: block;">
+      </div>
+
+      <!-- ── EXAMPLE 2: Better ── -->
+      <div class="mockup-section">
+        <div class="mockup-label">② Better — above average</div>
+        <img src="example2.png" alt="Above average example website" style="width: 100%; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.35); display: block;">
+      </div>
+
+      <!-- ── EXAMPLE 3: Polished ── -->
+      <div class="mockup-section">
+        <div class="mockup-label">③ Polished — wow factor</div>
+        <img src="example3.png" alt="Polished example website" style="width: 100%; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.35); display: block;">
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section" style="text-align: center; padding-bottom: 1em;">
+      <p>Ready? Head back and run your workshop!</p>
+      <div style="display: flex; gap: 1em; justify-content: center; flex-wrap: wrap; margin-top: 0.5em;">
+        <a id="form-link" class="hoverable" href="index.html">← Back to Boba Drops</a>
+        <a id="form-link" class="hoverable" href="https://forms.hackclub.com/boba-workshop" target="_blank">Run a workshop</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <p style="display: flex; gap: 4px; justify-content: center;">Made with <img src="images/boba-parrot.gif" alt="boba"
+        title="A parrot with boba" height="20px" /> by <a href="https://hackclub.com">Hack Club</a>, a 501(c)(3)
+      non-profit.</p>
+  </div>
+  <script src="banner.js"></script>
+</body>
+</html>
