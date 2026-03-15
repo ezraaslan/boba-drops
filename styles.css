@@ -108,7 +108,7 @@ a {
     gap: 1em;
     max-width: 50rem;
     margin: 0 auto;
-    /* max-width:  */
+    
 }
 
 #grid-gallery {
@@ -221,11 +221,10 @@ a {
 
 #subtitle {
     display: inherit;
-    /* font family: gunydrops */
+    
 }
 
 .yt-embed {
-    /* width: 100%; */
     margin-left: auto;
     margin-right: auto;
     border-radius: 1em;
