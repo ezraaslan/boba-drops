@@ -365,3 +365,11 @@ button {
     outline: none;
     box-shadow: 0 0 5px #F6D193;
 }
+
+.error {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
