@@ -5,6 +5,19 @@ body {
     background: #C76B0F;
     font-size: 1.5em;
 }
+body.dark-mode {
+  background: #1a1a1a;
+  color: #ffffff6c;
+}
+
+body.dark-mode #header,
+body.dark-mode #header-gallery,
+body.dark-mode .container,
+body.dark-mode #footer {
+  background: #1a1a1a;
+  background-image: none;
+}
+
 #header {
     padding: 1em;
     background-color: #C76B0F;
@@ -38,6 +51,13 @@ body {
     position: absolute;
     top: 20px;
     right: 30px;
+}
+
+.dark-mode-button {
+    color: #dee0da;
+    position: absolute;
+    top: 25px;
+    right: 150px;
 }
 
 .status-list {
